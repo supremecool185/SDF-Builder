@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1eyvqg40qw5y"]
+
+[ext_resource type="Script" uid="uid://ctgkcnjceotcd" path="res://vector_select.gd" id="1_6ak70"]
+[ext_resource type="PackedScene" uid="uid://6p5twc240wsl" path="res://ExpressionEdit.tscn" id="1_fpcuu"]
+
+[node name="VectorSelect" type="HFlowContainer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -50.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = ExtResource("1_6ak70")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "X"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ExpressionEdit_X" parent="HBoxContainer" instance=ExtResource("1_fpcuu")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Y"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ExpressionEdit_Y" parent="HBoxContainer2" instance=ExtResource("1_fpcuu")]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Z"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ExpressionEdit_Z" parent="HBoxContainer3" instance=ExtResource("1_fpcuu")]
+layout_mode = 2
+
+[connection signal="NewExpression" from="HBoxContainer/ExpressionEdit_X" to="." method="_on_expression_edit_x_new_expression"]
+[connection signal="NewExpression" from="HBoxContainer2/ExpressionEdit_Y" to="." method="_on_expression_edit_y_new_expression"]
+[connection signal="NewExpression" from="HBoxContainer3/ExpressionEdit_Z" to="." method="_on_expression_edit_z_new_expression"]

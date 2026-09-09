@@ -1,0 +1,6 @@
+{"Camera_position":["0.0","0.0","-5"],"Camera_rotate_order":0,"Camera_rotation":["0.0","0.0","0.0"],"Light_position":["50","-50","-100"],"Time_scale":0.0,"Type":"Settings"}
+{"Color":[0.68359375,0.461626052856445,0.176239013671875],"Merge_mode":0,"Position":["0.0","0.0","0.0"],"Rotation":["t*0.1","t","0.0"],"Rotation_order":0,"Scale":["1.1+sin(t)*0.3","1.0","1.0"],"Shape":6,"Smoothing":0.1,"Type":"MenuObject"}
+{"Color":[0.381702989339828,0.381702989339828,0.381702989339828],"Merge_mode":2,"Position":["0.0","0.0","0.0"],"Rotation":["0.0","0.0","0.0"],"Rotation_order":0,"Scale":["1.5+sin(t)*0.1","1.0","1.0"],"Shape":1,"Smoothing":0.5,"Type":"MenuObject"}
+{"Color":[0.78125,0.1556396484375,0.1556396484375],"Merge_mode":0,"Position":["0","0","0.0"],"Rotation":["t*0.1","t","0.0"],"Rotation_order":0,"Scale":["1.0","1.0","1.0"],"Shape":6,"Smoothing":0.2,"Type":"MenuObject"}
+{"Color":[0.381702989339828,0.381702989339828,0.381702989339828],"Merge_mode":2,"Position":["0.0","0.0","0.0"],"Rotation":["0.0","0.0","0.0"],"Rotation_order":0,"Scale":["1","1.0","1.0"],"Shape":1,"Smoothing":0.15,"Type":"MenuObject"}
+{"Color":[0.822124123573303,0.84765625,0.380783081054688],"Merge_mode":0,"Position":["0.0","0.0","0.0"],"Rotation":["t","t*0.1","0.0"],"Rotation_order":0,"Scale":["0.7","1.0","1.0"],"Shape":5,"Smoothing":0.0,"Type":"MenuObject"}

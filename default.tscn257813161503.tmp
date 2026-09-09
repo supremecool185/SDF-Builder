@@ -1,0 +1,322 @@
+[gd_scene load_steps=15 format=3 uid="uid://dd5efmgcj1q60"]
+
+[ext_resource type="Material" uid="uid://do7tmiud4sl8e" path="res://SDFdisplay.tres" id="1_rgvas"]
+[ext_resource type="Theme" uid="uid://tbnj8b5qn0qw" path="res://new_theme.tres" id="3_erduv"]
+[ext_resource type="Script" uid="uid://4t61dn2iil2m" path="res://SDFcontroller.gd" id="3_koolx"]
+[ext_resource type="Script" uid="uid://cj1hm6r6k655d" path="res://save_popup.gd" id="3_w0402"]
+[ext_resource type="PackedScene" uid="uid://b1eyvqg40qw5y" path="res://VectorSelect.tscn" id="4_erduv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_de8j7"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_koolx"]
+sky_material = SubResource("ProceduralSkyMaterial_de8j7")
+
+[sub_resource type="Environment" id="Environment_erduv"]
+background_mode = 3
+sky = SubResource("Sky_koolx")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_w0402"]
+size = Vector2(1920, 1080)
+
+[sub_resource type="Theme" id="Theme_erduv"]
+default_font_size = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w0402"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Theme" id="Theme_w0402"]
+default_font_size = 25
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_erduv"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w0402"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_erduv")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+projection = 1
+size = 10.8
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.11, 0)
+sky_mode = 1
+
+[node name="SDFcontroller" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = ExtResource("1_rgvas")
+position = Vector2(958, 537)
+texture = SubResource("PlaceholderTexture2D_w0402")
+script = ExtResource("3_koolx")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SavePopup" type="Control" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_w0402")
+
+[node name="Panel" type="PanelContainer" parent="UI/SavePopup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.5
+offset_top = -46.5
+offset_right = 67.5
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_erduv")
+theme_override_styles/panel = SubResource("StyleBoxFlat_w0402")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/SavePopup/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="UI/SavePopup/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Save as:"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="UI/SavePopup/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/SavePopup/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Button" type="Button" parent="UI/SavePopup/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Confirm"
+
+[node name="Button2" type="Button" parent="UI/SavePopup/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="TabContainer" type="TabContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.25
+anchor_bottom = 1.0
+grow_vertical = 2
+theme = SubResource("Theme_w0402")
+current_tab = 0
+
+[node name="Scene" type="ScrollContainer" parent="UI/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Padding" type="PanelContainer" parent="UI/TabContainer/Scene"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_erduv")
+
+[node name="SceneList" type="VBoxContainer" parent="UI/TabContainer/Scene/Padding"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="UI/TabContainer/Scene/Padding/SceneList"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("3_erduv")
+text = "Add new object"
+
+[node name="Settings" type="PanelContainer" parent="UI/TabContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_erduv")
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/TabContainer/Settings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/TabContainer/Settings/VBoxContainer"]
+layout_mode = 2
+text = "Camera Position"
+horizontal_alignment = 1
+
+[node name="CameraPosition" parent="UI/TabContainer/Settings/VBoxContainer" instance=ExtResource("4_erduv")]
+layout_mode = 2
+Default = ["0.0", "0.0", "-10"]
+
+[node name="Label3" type="Label" parent="UI/TabContainer/Settings/VBoxContainer"]
+layout_mode = 2
+text = "Camera Rotation"
+horizontal_alignment = 1
+
+[node name="CameraRotation" parent="UI/TabContainer/Settings/VBoxContainer" instance=ExtResource("4_erduv")]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="UI/TabContainer/Settings/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/TabContainer/Settings/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Rotation order"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="RotationOrder" type="OptionButton" parent="UI/TabContainer/Settings/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+selected = 0
+item_count = 6
+popup/item_0/text = "XYZ"
+popup/item_0/id = 0
+popup/item_1/text = "XZY"
+popup/item_1/id = 1
+popup/item_2/text = "YXZ"
+popup/item_2/id = 2
+popup/item_3/text = "YZX"
+popup/item_3/id = 3
+popup/item_4/text = "ZXY"
+popup/item_4/id = 4
+popup/item_5/text = "ZYX"
+popup/item_5/id = 5
+
+[node name="Label2" type="Label" parent="UI/TabContainer/Settings/VBoxContainer"]
+layout_mode = 2
+text = "Light Position"
+horizontal_alignment = 1
+
+[node name="LightPosition" parent="UI/TabContainer/Settings/VBoxContainer" instance=ExtResource("4_erduv")]
+layout_mode = 2
+Default = ["50", "-50", "-100"]
+
+[node name="Label4" type="Label" parent="UI/TabContainer/Settings/VBoxContainer"]
+layout_mode = 2
+text = "Time Scale"
+horizontal_alignment = 1
+
+[node name="Smoothing" type="HBoxContainer" parent="UI/TabContainer/Settings/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="UI/TabContainer/Settings/VBoxContainer/Smoothing"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = -4.0
+max_value = 4.0
+step = 0.01
+tick_count = 3
+
+[node name="Label" type="Label" parent="UI/TabContainer/Settings/VBoxContainer/Smoothing"]
+layout_mode = 2
+text = "1.0"
+horizontal_alignment = 1
+
+[node name="Save & Load" type="PanelContainer" parent="UI/TabContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_erduv")
+metadata/_tab_index = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/TabContainer/Save & Load"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="UI/TabContainer/Save & Load/VBoxContainer"]
+layout_mode = 2
+text = "Save scene"
+
+[node name="Button3" type="Button" parent="UI/TabContainer/Save & Load/VBoxContainer"]
+layout_mode = 2
+text = "Open saves folder"
+
+[node name="HSeparator" type="HSeparator" parent="UI/TabContainer/Save & Load/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/TabContainer/Save & Load/VBoxContainer"]
+layout_mode = 2
+text = "Load scene"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/TabContainer/Save & Load/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_w0402")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/TabContainer/Save & Load/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator2" type="HSeparator" parent="UI/TabContainer/Save & Load/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/TabContainer/Save & Load/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Presets"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Presets" type="VBoxContainer" parent="UI/TabContainer/Save & Load/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="UI/TabContainer/Save & Load/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="UI/TabContainer/Save & Load/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "User scenes"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="User" type="VBoxContainer" parent="UI/TabContainer/Save & Load/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="text_changed" from="UI/SavePopup/Panel/VBoxContainer/LineEdit" to="UI/SavePopup" method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="UI/SavePopup/Panel/VBoxContainer/HBoxContainer/Button" to="UI/SavePopup" method="_on_button_pressed"]
+[connection signal="pressed" from="UI/SavePopup/Panel/VBoxContainer/HBoxContainer/Button2" to="UI/SavePopup" method="_on_button_2_pressed"]
+[connection signal="pressed" from="UI/TabContainer/Scene/Padding/SceneList/Button" to="SDFcontroller" method="_on_button_pressed"]
+[connection signal="value_changed" from="UI/TabContainer/Settings/VBoxContainer/Smoothing/HSlider" to="SDFcontroller" method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="UI/TabContainer/Save & Load/VBoxContainer/Button" to="SDFcontroller" method="_on_save_button_pressed"]
+[connection signal="pressed" from="UI/TabContainer/Save & Load/VBoxContainer/Button3" to="SDFcontroller" method="_on_button_3_pressed"]

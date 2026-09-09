@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://6p5twc240wsl"]
+
+[ext_resource type="Script" uid="uid://bryt86ukt6b1q" path="res://expression_edit.gd" id="1_e1v46"]
+[ext_resource type="Texture2D" uid="uid://dunwx2kgp1cm8" path="res://hazard-sign.svg" id="2_iwre8"]
+
+[node name="ExpressionEdit" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_e1v46")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1.0"
+alignment = 1
+caret_blink = true
+
+[node name="Warning" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_iwre8")
+expand_mode = 2
+stretch_mode = 4
+
+[connection signal="text_changed" from="LineEdit" to="." method="_on_text_changed"]
